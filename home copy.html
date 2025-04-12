@@ -153,7 +153,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
       <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#home" class="text-xl font-bold tracking-wide animate-logo hover:animate-color-wave cursor-pointer">sqwensi</a>
+        <a id="logo-frame" data-src="Frames/homefr.html" class="text-xl font-bold tracking-wide logo-animated cursor-pointer">sqwensi</a>
         <!-- Desktop menu -->
         <ul class="desktop-menu flex space-x-6 text-sm font-medium">
           <li>
@@ -370,6 +370,37 @@
         document.body.classList.add('transition-colors', 'duration-700');
         document.body.classList.toggle('dark');
       });
+      
+      const logo = document.getElementById('logo-frame');
+      if (logo) {
+        logo.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const url = logo.getAttribute('data-src');
+          frame.classList.remove('loaded');
+          frame.innerHTML = '<div class="loader">Chargement...</div>';
+          try {
+            const res = await fetch(url);
+            const html = await res.text();
+            setTimeout(() => {
+              frame.innerHTML = html;
+              frame.classList.add('loaded');
+              frame.style.minHeight = 'calc(100vh - 4rem)';
+            }, 300);
+      
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            document.body.appendChild(temp);
+            const height = temp.offsetHeight;
+            document.body.removeChild(temp);
+      
+            frame.style.height = height + 'px';
+            window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
+          } catch {
+            frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
+            frame.style.height = 'auto';
+          }
+        });
+      }
       
       
     </script>

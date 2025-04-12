@@ -20,14 +20,45 @@
   animation: colorWave 3s infinite;
 }
 
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #22c55e; }
+  25% { text-shadow: 0 0 10px #3b82f6; }
+  50% { text-shadow: 0 0 10px #a855f7; }
+  75% { text-shadow: 0 0 10px #f59e0b; }
+}
+
+.animate-color-aura {
+  animation: glow 4s ease-in-out infinite;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #111;
+}
+
 #content-frame {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  min-height: calc(100vh - 4rem); /* hauteur min adaptée à un header + frame */
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 4rem);
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
 }
-#content-frame.loaded {
-  opacity: 1;
+
+#logo-frame {
+  position: relative;
+  z-index: 60;
 }
+
 .loader {
   display: flex;
   justify-content: center;
@@ -36,6 +67,42 @@
   color: #888;
   font-size: 1rem;
 }
+
+.menu-link {
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
+  transition: width 0.4s ease;
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+.logo-animated:hover {
+  animation: colorWave 3s infinite;
+}
+
+#mobile-menu {
+  background-color: rgba(0, 0, 0, 0.95);
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  z-index: 40;
+}
 </style>
 </head>
 <body class="bg-white text-black">
@@ -43,7 +110,7 @@
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a id="logo-frame" data-src="Frames/homefr.html" class="text-xl font-bold tracking-wide logo-animated cursor-pointer">sqwensi</a>
+      <div id="logo-frame" data-src="Frames/hfr.html" class="text-2xl md:text-3xl font-extrabold tracking-wide logo-animated cursor-pointer select-none">sqwensi</div>
       <ul class="desktop-menu flex space-x-6 text-sm font-medium">
         <li><a href="Frames/studio.html" class="menu-link uppercase relative group"><span class="link-text">Studio</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
         <li><a href="Frames/brand.html" class="menu-link uppercase relative group"><span class="link-text">Brand</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
@@ -61,7 +128,7 @@
   </nav>
 
   <!-- Contenu dynamique -->
-  <main class="pt-16 px-0">
+  <main class="pt-0">
     <div id="content-frame" class="transition-all duration-500 ease-in-out overflow-hidden"></div>
   </main>
 
@@ -72,21 +139,18 @@
       try {
         frame.classList.remove('loaded');
         frame.innerHTML = '<div class="loader">Chargement...</div>';
-        const res = await fetch('Frames/homefr.html');
+        const res = await fetch('Frames/hfr.html');
         const html = await res.text();
         setTimeout(() => {
           frame.innerHTML = html;
           frame.classList.add('loaded');
-          frame.style.minHeight = 'calc(100vh - 6rem)';
         }, 300);
 
         const temp = document.createElement('div');
         temp.innerHTML = html;
         document.body.appendChild(temp);
-        const height = temp.offsetHeight;
         document.body.removeChild(temp);
 
-        frame.style.height = height + 'px';
       } catch {
         frame.innerHTML = '<p class="text-center text-red-500">Page d’accueil introuvable.</p>';
         frame.style.height = 'auto';
@@ -125,17 +189,14 @@
           setTimeout(() => {
             frame.innerHTML = html;
             frame.classList.add('loaded');
-            frame.style.minHeight = 'calc(100vh - 6rem)';
+            window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
           }, 300);
 
           const temp = document.createElement('div');
           temp.innerHTML = html;
           document.body.appendChild(temp);
-          const height = temp.offsetHeight;
           document.body.removeChild(temp);
 
-          frame.style.height = height + 'px';
-          window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
         } catch {
           frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
           frame.style.height = 'auto';
@@ -148,28 +209,28 @@
       logo.addEventListener('click', async (e) => {
         e.preventDefault();
         const url = logo.getAttribute('data-src');
+        if (!url) return;
+
         frame.classList.remove('loaded');
         frame.innerHTML = '<div class="loader">Chargement...</div>';
+
         try {
-          const res = await fetch(url);
+          const res = await fetch(url, { cache: 'no-store' });
           const html = await res.text();
+
           setTimeout(() => {
             frame.innerHTML = html;
             frame.classList.add('loaded');
-            frame.style.minHeight = 'calc(100vh - 6rem)';
+            window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
           }, 300);
 
           const temp = document.createElement('div');
           temp.innerHTML = html;
           document.body.appendChild(temp);
-          const height = temp.offsetHeight;
           document.body.removeChild(temp);
 
-          frame.style.height = height + 'px';
-          window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
         } catch {
           frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
-          frame.style.height = 'auto';
         }
       });
     }
@@ -179,6 +240,12 @@
 
     mobileToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
     });
   </script>
 </body>
