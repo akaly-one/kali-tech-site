@@ -50,6 +50,33 @@
       .hover\:animate-color-wave:hover {
         animation: color-wave 1.5s linear infinite;
       }
+
+      .menu-link {
+        position: relative;
+        display: inline-block;
+        padding: 5px 10px;
+        z-index: 1;
+        transition: color 0.3s ease;
+      }
+
+      .menu-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
+        transition: width 0.4s ease;
+      }
+
+      .menu-link:hover::after {
+        width: 100%;
+      }
+
+      .menu-link:hover {
+        color: white;
+      }
     </style>
   </head>
   <body class="bg-white text-black">
@@ -57,15 +84,21 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
       <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold tracking-wide animate-logo hover:animate-color-wave cursor-pointer">sqwensi</h1>
+        <a href="#home" class="text-xl font-bold tracking-wide animate-logo hover:animate-color-wave cursor-pointer">sqwensi</a>
         <!-- Desktop menu -->
         <ul class="desktop-menu flex space-x-6 text-sm font-medium">
-          <li><a href="#home" class="hover:text-green-400 uppercase">Accueil</a></li>
-          <li><a href="#about" class="hover:text-green-400 uppercase">À propos</a></li>
-          <li><a href="#services" class="hover:text-green-400 uppercase">Services</a></li>
-          <li><a href="#portfolio" class="hover:text-green-400 uppercase">Réalisations</a></li>
-          <li><a href="#partners" class="hover:text-green-400 uppercase">Partenariat</a></li>
-          <li><a href="#contact" class="hover:text-green-400 uppercase">Contact</a></li>
+          <li>
+            <a href="#about" class="menu-link uppercase"><span class="link-text">Studio</span></a>
+          </li>
+          <li>
+            <a href="#services" class="menu-link uppercase"><span class="link-text">Brand Market</span></a>
+          </li>
+          <li>
+            <a href="#partners" class="menu-link uppercase"><span class="link-text">Partenariat</span></a>
+          </li>
+          <li>
+            <a href="#contact" class="menu-link uppercase"><span class="link-text">Contact</span></a>
+          </li>
         </ul>
         <!-- Mobile menu button -->
         <div class="mobile-menu">
@@ -75,12 +108,18 @@
       <!-- Mobile menu links -->
       <div id="mobile-menu-links" class="hidden bg-black text-white px-4 pb-4">
         <ul class="flex flex-col space-y-2 text-sm font-medium">
-          <li><a href="#home" class="hover:text-green-400 uppercase">Accueil</a></li>
-          <li><a href="#about" class="hover:text-green-400 uppercase">À propos</a></li>
-          <li><a href="#services" class="hover:text-green-400 uppercase">Services</a></li>
-          <li><a href="#portfolio" class="hover:text-green-400 uppercase">Réalisations</a></li>
-          <li><a href="#partners" class="hover:text-green-400 uppercase">Partenariat</a></li>
-          <li><a href="#contact" class="hover:text-green-400 uppercase">Contact</a></li>
+          <li>
+            <a href="#about" class="menu-link uppercase"><span class="link-text">Studio</span></a>
+          </li>
+          <li>
+            <a href="#services" class="menu-link uppercase"><span class="link-text">Brand Market</span></a>
+          </li>
+          <li>
+            <a href="#partners" class="menu-link uppercase"><span class="link-text">Partenariat</span></a>
+          </li>
+          <li>
+            <a href="#contact" class="menu-link uppercase"><span class="link-text">Contact</span></a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -122,14 +161,39 @@
       </div>
     </section>
 
+    <!-- Studio Details -->
+    <section id="studio" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-4">
+        <h3 class="text-3xl font-bold text-center mb-12">Studio</h3>
+        <div class="grid md:grid-cols-2 gap-10">
+          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Photographie</h4>
+            <p class="text-gray-800">Shooting professionnel pour vos produits, portraits ou événements.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Montage Vidéo</h4>
+            <p class="text-gray-800">Montages dynamiques, publicitaires ou artistiques pour tout support digital.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Designer Web</h4>
+            <p class="text-gray-800">Conception UI/UX, sites modernes, landing pages et interfaces personnalisées.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Designer Publicité</h4>
+            <p class="text-gray-800">Création de visuels et campagnes publicitaires percutantes et professionnelles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Portfolio -->
     <section id="portfolio" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-4 text-center">
         <h3 class="text-3xl font-bold mb-12">Réalisations</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <img src="https://source.unsplash.com/800x600/?technology,project" class="rounded-xl shadow-md" alt="Projet 1">
-          <img src="https://source.unsplash.com/800x600/?design,workspace" class="rounded-xl shadow-md" alt="Projet 2">
-          <img src="https://source.unsplash.com/800x600/?branding,creative" class="rounded-xl shadow-md" alt="Projet 3">
+          <img src="https://images.unsplash.com/photo-1581093588401-99bcbc51b4c3?auto=format&fit=crop&w=800&q=80" class="rounded-xl shadow-md" alt="Projet 1">
+          <img src="https://images.unsplash.com/photo-1581276879432-15a19d654956?auto=format&fit=crop&w=800&q=80" class="rounded-xl shadow-md" alt="Projet 2">
+          <img src="https://images.unsplash.com/photo-1559027615-23b51c8b16c5?auto=format&fit=crop&w=800&q=80" class="rounded-xl shadow-md" alt="Projet 3">
         </div>
       </div>
     </section>
@@ -172,6 +236,24 @@
       const menu = document.getElementById('mobile-menu-links');
       btn.addEventListener('click', () => {
         menu.classList.toggle('open');
+      });
+
+      const emojiMap = {
+        'Studio': '📸',
+        'Brand Market': '💼',
+        'Partenariat': '🤝',
+        'Contact': '✉️'
+      };
+
+      document.querySelectorAll('.menu-link').forEach(link => {
+        const span = link.querySelector('.link-text');
+        const original = span.innerText;
+        link.addEventListener('mouseenter', () => {
+          span.innerText = emojiMap[original] || original;
+        });
+        link.addEventListener('mouseleave', () => {
+          span.innerText = original;
+        });
       });
     </script>
   </body>
