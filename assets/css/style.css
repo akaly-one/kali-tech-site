@@ -2,3 +2,47 @@
 <section id="home" style="background-image: url('https://blog.cgify.com/wp-content/uploads/2020/01/meaning-of-design.jpg');">
   <h2 class="text-5xl md:text-7xl font-extrabold mb-4 text-on-image">L'agence créative & tech</h2>
   <p class="text-xl text-on-image max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
+</section>
+
+<style>
+.text-on-image {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.menu-link {
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+section {
+  scroll-margin-top: 6rem; /* équivaut à scroll-mt-24 */
+}
+
+.menu-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+  margin-top: 4px;
+  transition: transform 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.menu-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Applique une couleur blanche au texte des boutons de menu */
+.menu-link .link-text {
+  color: #ffffff !important;
+}
+
+/* Si le corps n'est pas en mode sombre, mais que le fond du menu est noir, forcer le texte en blanc */
+nav.bg-black .menu-link .link-text {
+  color: #ffffff !important;
+}
+</style>
+</file>
