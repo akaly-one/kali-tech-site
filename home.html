@@ -115,8 +115,34 @@
       body.dark .bg-gray-100 {
         background-color: #334155; /* Fond légèrement plus sombre */
       }
-    </style>
-    <style>
+
+      @keyframes zoomOutSlow {
+        0% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .animate-entrance {
+        animation: zoomOutSlow 1.4s ease-out both;
+      }
+
+      @keyframes waveAura {
+        0%   { text-shadow: 0 0 10px #22c55e; }
+        25%  { text-shadow: 0 0 15px #3b82f6; }
+        50%  { text-shadow: 0 0 20px #a855f7; }
+        75%  { text-shadow: 0 0 15px #f59e0b; }
+        100% { text-shadow: 0 0 10px #22c55e; }
+      }
+
+      .animate-color-aura {
+        animation: waveAura 3s ease-in-out infinite;
+      }
+
       html {
         scroll-behavior: smooth;
       }
@@ -169,10 +195,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('./assets/img/bg-gold-white.jpg');">
-      <div data-aos="fade-up" class="transition-transform duration-500 hover:scale-105 text-white drop-shadow-lg">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">L'agence créative & tech</h2>
-        <p class="text-xl text-white drop-shadow-md max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
+    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center relative" style="background-image: url('./assets/img/bg-gold-white.jpg');">
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-yellow-400 opacity-20 blur-3xl animate-pulse z-0"></div>
+      <div class="relative z-10 text-center text-white animate-entrance">
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-4 animate-color-aura shadow-lg">L'agence créative & tech</h2>
+        <p class="text-xl max-w-xl mx-auto animate-color-aura shadow-md">Design. Branding. Import-export. Développement web.</p>
       </div>
     </section>
 
