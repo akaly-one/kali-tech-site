@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sqwensi - Agence créative</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black z-50 border-b border-gray-800">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-wide">sqwensi</h1>
+        <ul class="flex space-x-6 text-sm font-medium">
+          <li><a href="#home" class="hover:text-green-400">Accueil</a></li>
+          <li><a href="#about" class="hover:text-green-400">À propos</a></li>
+          <li><a href="#services" class="hover:text-green-400">Services</a></li>
+          <li><a href="#portfolio" class="hover:text-green-400">Réalisations</a></li>
+          <li><a href="#partners" class="hover:text-green-400">Partenariat</a></li>
+          <li><a href="#contact" class="hover:text-green-400">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80');">
+      <div data-aos="fade-up">
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-4">L'agence créative & tech</h2>
+        <p class="text-xl text-gray-300 max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-black border-t border-gray-800" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-4">À propos de sqwensi</h3>
+        <p class="text-gray-400 text-lg">sqwensi est une agence créative basée en Belgique qui connecte design, technologie et logistique pour propulser des marques ambitieuses dans l’univers digital et physique.</p>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-black border-t border-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-4">
+        <h3 class="text-3xl font-bold text-center mb-12">Nos services</h3>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="bg-gray-900 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Design graphique</h4>
+            <p class="text-gray-400">Création de visuels, flyers, affiches, branding sur-mesure.</p>
+          </div>
+          <div class="bg-gray-900 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Développement web</h4>
+            <p class="text-gray-400">Sites vitrines, e-commerce, landing pages responsives et animées.</p>
+          </div>
+          <div class="bg-gray-900 p-6 rounded-xl hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold mb-2">Import-export</h4>
+            <p class="text-gray-400">Solutions d’approvisionnement et de logistique de produits depuis la Chine vers l’Europe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-20 bg-black border-t border-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-12">Réalisations</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <img src="https://source.unsplash.com/random/800x600?technology" class="rounded-xl shadow-md" alt="Projet 1">
+          <img src="https://source.unsplash.com/random/800x600?design" class="rounded-xl shadow-md" alt="Projet 2">
+          <img src="https://source.unsplash.com/random/800x600?branding" class="rounded-xl shadow-md" alt="Projet 3">
+        </div>
+      </div>
+    </section>
+
+    <!-- Partenariat -->
+    <section id="partners" class="py-20 bg-black border-t border-gray-800" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-6">Vous êtes freelance ou indépendant ?</h3>
+        <p class="text-gray-400 mb-6">Rejoignez le réseau sqwensi et développez vos projets avec nous.</p>
+        <a href="#contact" class="inline-block px-6 py-3 bg-green-400 text-black font-semibold rounded-full hover:bg-green-300 transition">Devenir partenaire</a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-black border-t border-gray-800" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-6">Contact</h3>
+        <p class="text-gray-400 mb-6">Parlez-nous de votre projet ou posez-nous vos questions à l’aide du formulaire.</p>
+        <form class="grid grid-cols-1 gap-4 max-w-xl mx-auto">
+          <input type="text" placeholder="Nom" class="p-3 rounded bg-gray-800 text-white" required>
+          <input type="email" placeholder="Email" class="p-3 rounded bg-gray-800 text-white" required>
+          <textarea placeholder="Votre message..." rows="4" class="p-3 rounded bg-gray-800 text-white" required></textarea>
+          <button type="submit" class="bg-green-400 text-black px-6 py-3 rounded font-semibold hover:bg-green-300 transition">Envoyer</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-500 border-t border-gray-800">
+      <p class="text-sm">© 2025 sqwensi. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Init AOS -->
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    </script>
+  </body>
+</html>
