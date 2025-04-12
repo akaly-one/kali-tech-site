@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Partenariat</title>
+  <style>
+    .perspective {
+      perspective: 1000px;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .transform-style {
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body>
+  <section id="partners" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Partenariat</h2>
+      <p class="text-gray-600 mb-10">
+        Tu es freelance ou indépendant et tu souhaites collaborer avec une agence dynamique ?<br>
+        Rejoins sqwensi et participons ensemble à des projets innovants dans le design, la tech ou les médias.
+      </p>
+
+      <div class="group perspective w-full max-w-md mx-auto cursor-pointer">
+        <div class="relative h-72 transform-style preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
+          <!-- Face avant -->
+          <div class="absolute inset-0 flex items-center justify-center text-center bg-green-100 text-black font-semibold text-xl p-6 backface-hidden rounded-xl shadow-lg">
+            Vous êtes freelance ou indépendant ?
+          </div>
+          <!-- Face arrière -->
+          <div class="absolute inset-0 rotate-y-180 bg-white p-6 backface-hidden rounded-xl shadow-lg">
+            <h3 class="text-xl font-bold mb-4 text-center">Tu cherches une colab ?</h3>
+            <form class="grid grid-cols-1 gap-4 text-sm">
+              <input type="text" placeholder="Nom & Prénom" class="p-3 rounded bg-gray-100 text-black" required>
+              <input type="email" placeholder="Email" class="p-3 rounded bg-gray-100 text-black" required>
+              <textarea placeholder="Quel type de collaboration ?" rows="3" class="p-3 rounded bg-gray-100 text-black" required></textarea>
+              <button type="submit" class="bg-green-500 hover:bg-green-400 text-white py-2 px-4 rounded font-semibold transition">
+                Collaborons
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

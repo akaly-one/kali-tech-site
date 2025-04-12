@@ -1,381 +1,185 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sqwensi - Agence créative</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sqwensi - Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+@keyframes colorWave {
+  0% { color: #22c55e; }
+  25% { color: #3b82f6; }
+  50% { color: #a855f7; }
+  75% { color: #f59e0b; }
+  100% { color: #22c55e; }
+}
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+.animate-color-wave {
+  animation: colorWave 3s infinite;
+}
 
-    <!-- Feuille de style personnalisée -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+#content-frame {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  min-height: calc(100vh - 4rem); /* hauteur min adaptée à un header + frame */
+}
+#content-frame.loaded {
+  opacity: 1;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #888;
+  font-size: 1rem;
+}
+</style>
+</head>
+<body class="bg-white text-black">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a id="logo-frame" data-src="Frames/homefr.html" class="text-xl font-bold tracking-wide logo-animated cursor-pointer">sqwensi</a>
+      <ul class="desktop-menu flex space-x-6 text-sm font-medium">
+        <li><a href="Frames/studio.html" class="menu-link uppercase relative group"><span class="link-text">Studio</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
+        <li><a href="Frames/brand.html" class="menu-link uppercase relative group"><span class="link-text">Brand</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
+        <li><a href="Frames/partners.html" class="menu-link uppercase relative group"><span class="link-text">Partenariat</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
+        <li><a href="Frames/contact.html" class="menu-link uppercase relative group"><span class="link-text">Contact</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
+      </ul>
+      <button id="menu-toggle" class="md:hidden text-2xl">☰</button>
+    </div>
+    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 mt-4 text-sm font-medium">
+      <li><a href="Frames/studio.html" class="menu-link uppercase">Studio</a></li>
+      <li><a href="Frames/brand.html" class="menu-link uppercase">Brand</a></li>
+      <li><a href="Frames/partners.html" class="menu-link uppercase">Partenariat</a></li>
+      <li><a href="Frames/contact.html" class="menu-link uppercase">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- AOS (Animate on Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Contenu dynamique -->
+  <main class="pt-16 px-0">
+    <div id="content-frame" class="transition-all duration-500 ease-in-out overflow-hidden"></div>
+  </main>
 
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
+  <script>
+    const frame = document.getElementById('content-frame');
+    
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        frame.classList.remove('loaded');
+        frame.innerHTML = '<div class="loader">Chargement...</div>';
+        const res = await fetch('Frames/homefr.html');
+        const html = await res.text();
+        setTimeout(() => {
+          frame.innerHTML = html;
+          frame.classList.add('loaded');
+          frame.style.minHeight = 'calc(100vh - 6rem)';
+        }, 300);
+
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        document.body.appendChild(temp);
+        const height = temp.offsetHeight;
+        document.body.removeChild(temp);
+
+        frame.style.height = height + 'px';
+      } catch {
+        frame.innerHTML = '<p class="text-center text-red-500">Page d’accueil introuvable.</p>';
+        frame.style.height = 'auto';
       }
-      .mobile-menu {
-        display: none;
-      }
-      @media (max-width: 768px) {
-        .desktop-menu {
-          display: none !important;
-        }
-        .mobile-menu {
-          display: block !important;
-        }
-        #mobile-menu-links {
-          display: none;
-        }
-        #mobile-menu-links.open {
-          display: block;
-        }
-      }
-      @keyframes color-wave {
-        0%   { color: #22c55e; }
-        25%  { color: #3b82f6; }
-        50%  { color: #a855f7; }
-        75%  { color: #f59e0b; }
-        100% { color: #22c55e; }
-      }
+    });
 
-      .hover\:animate-color-wave:hover {
-        animation: color-wave 1.5s linear infinite;
-      }
+    const menuLinks = document.querySelectorAll('nav a[href$=".html"]');
 
-      .menu-link {
-        position: relative;
-        display: inline-block;
-        padding: 5px 10px;
-        z-index: 1;
-        transition: color 0.3s ease;
-      }
+    const emojiMap = {
+      'Studio': '📸',
+      'Brand': '💼',
+      'Partenariat': '🤝',
+      'Contact': '✉️'
+    };
 
-      .menu-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 2px;
-        width: 0%;
-        background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
-        transition: width 0.4s ease;
-      }
+    menuLinks.forEach(link => {
+      const span = link.querySelector('.link-text');
+      const original = span.textContent;
 
-      .menu-link:hover::after {
-        width: 100%;
-      }
-
-      .menu-link:hover {
-        color: white;
-      }
-
-      body.dark {
-        background-color: #0f172a;
-        color: #f1f5f9;
-      }
-
-      body.dark section,
-      body.dark footer {
-        background-color: #1e293b;
-        color: #f1f5f9;
-      }
-
-      body.dark input,
-      body.dark textarea {
-        background-color: #334155;
-        color: #f1f5f9;
-      }
-
-      body.dark nav {
-        background-color: rgba(15, 23, 42, 0.9);
-      }
-
-      body.dark .menu-link::after {
-        background: linear-gradient(90deg, #f59e0b, #a855f7, #3b82f6, #22c55e);
-      }
-
-      body.dark a:hover {
-        color: #22c55e;
-      }
-
-      body.dark .text-gray-800,
-      body.dark .text-gray-700 {
-        color: #e5e7eb; /* Texte clair lisible */
-      }
-
-      body.dark .bg-gray-100 {
-        background-color: #334155; /* Fond légèrement plus sombre */
-      }
-
-      @keyframes zoomOutSlow {
-        0% {
-          transform: scale(2.5);
-          opacity: 0;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      .animate-entrance {
-        animation: zoomOutSlow 1.4s ease-out both;
-      }
-
-      @keyframes waveAura {
-        0%   { text-shadow: 0 0 10px #22c55e; }
-        25%  { text-shadow: 0 0 15px #3b82f6; }
-        50%  { text-shadow: 0 0 20px #a855f7; }
-        75%  { text-shadow: 0 0 15px #f59e0b; }
-        100% { text-shadow: 0 0 10px #22c55e; }
-      }
-
-      .animate-color-aura {
-        animation: waveAura 3s ease-in-out infinite;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-      #about-wrapper.max-h-[800px] {
-        max-height: 800px;
-      }
-
-    </style>
-  </head>
-  <body class="bg-white text-black">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#home" class="text-xl font-bold tracking-wide animate-logo hover:animate-color-wave cursor-pointer">sqwensi</a>
-        <!-- Desktop menu -->
-        <ul class="desktop-menu flex space-x-6 text-sm font-medium">
-          <li>
-            <a href="#about" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Studio</span></a>
-          </li>
-          <li>
-            <a href="#services" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Brand</span></a>
-          </li>
-          <li>
-            <a href="#partners" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Partenariat</span></a>
-          </li>
-          <li>
-            <a href="#contact" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Contact</span></a>
-          </li>
-        </ul>
-        <!-- Mobile menu button -->
-        <div class="mobile-menu">
-          <button id="menu-btn" class="text-white focus:outline-none text-3xl">☰</button>
-        </div>
-        <button id="theme-toggle" class="ml-4 text-white border border-white px-2 py-1 rounded text-xs hover:bg-white hover:text-black transition">☀️ / 🌙</button>
-      </div>
-      <!-- Mobile menu links -->
-      <div id="mobile-menu-links" class="hidden bg-black text-white px-4 pb-4">
-        <ul class="flex flex-col space-y-2 text-sm font-medium">
-          <li>
-            <a href="#about" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Studio</span></a>
-          </li>
-          <li>
-            <a href="#services" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Brand</span></a>
-          </li>
-          <li>
-            <a href="#partners" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Partenariat</span></a>
-          </li>
-          <li>
-            <a href="#contact" class="menu-link uppercase" style="min-width: 120px; text-align: center;"><span class="link-text">Contact</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })" class="cursor-pointer h-screen flex items-center justify-center text-center bg-cover bg-center relative" style="background-image: url('./assets/img/bg-gold-white.jpg');">
-      <div class="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-500 to-yellow-400 opacity-20 blur-3xl animate-pulse z-0"></div>
-      <div id="trigger-about" class="relative z-10 text-center text-white animate-entrance cursor-pointer">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-4 animate-color-aura shadow-lg">L'agence créative & tech</h2>
-        <p class="text-xl max-w-xl mx-auto animate-color-aura shadow-md">Design. Branding. Import-export. Développement web.</p>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-4">À propos de sqwensi</h3>
-        <p class="text-gray-700 text-lg">sqwensi est une agence créative basée en Belgique qui connecte design, technologie et logistique pour propulser des marques ambitieuses dans l’univers digital et physique.</p>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-4">
-        <h3 class="text-3xl font-bold text-center mb-12">Nos services</h3>
-        <div class="grid md:grid-cols-3 gap-10">
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Design graphique</h4>
-            <p class="text-gray-800">Création de visuels, flyers, affiches, branding sur-mesure.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Développement web</h4>
-            <p class="text-gray-800">Sites vitrines, e-commerce, landing pages responsives et animées.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Import-export</h4>
-            <p class="text-gray-800">Solutions d’approvisionnement et de logistique de produits depuis la Chine vers l’Europe.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Studio Details -->
-    <section id="studio" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-4">
-        <h3 class="text-3xl font-bold text-center mb-12">Studio</h3>
-        <div class="grid md:grid-cols-2 gap-10">
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Photographie</h4>
-            <p class="text-gray-800">Shooting professionnel pour vos produits, portraits ou événements.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Montage Vidéo</h4>
-            <p class="text-gray-800">Montages dynamiques, publicitaires ou artistiques pour tout support digital.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Designer Web</h4>
-            <p class="text-gray-800">Conception UI/UX, sites modernes, landing pages et interfaces personnalisées.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl hover:shadow-lg transition duration-300">
-            <h4 class="text-xl font-semibold mb-2">Designer Publicité</h4>
-            <p class="text-gray-800">Création de visuels et campagnes publicitaires percutantes et professionnelles.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-12">Réalisations</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <div class="relative rounded-xl shadow-md overflow-hidden">
-            <img src="https://picsum.photos/600/400?grayscale" class="w-full h-full object-cover" alt="Projet temporaire 1">
-            <div class="absolute inset-0 flex items-center justify-center text-4xl">🎨</div>
-          </div>
-          <div class="relative rounded-xl shadow-md overflow-hidden">
-            <img src="https://picsum.photos/600/400?blur=2" class="w-full h-full object-cover" alt="Projet temporaire 2">
-            <div class="absolute inset-0 flex items-center justify-center text-4xl">🖌️</div>
-          </div>
-          <div class="relative rounded-xl shadow-md overflow-hidden">
-            <img src="https://picsum.photos/600/400?random=2" class="w-full h-full object-cover" alt="Projet temporaire 3">
-            <div class="absolute inset-0 flex items-center justify-center text-4xl">📸</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Partenariat -->
-    <section id="partners" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-6">Vous êtes freelance ou indépendant ?</h3>
-        <p class="text-gray-700 mb-6">Rejoignez le réseau sqwensi et développez vos projets avec nous.</p>
-        <a href="#join" class="inline-block px-6 py-3 bg-green-400 text-black font-semibold rounded-full hover:bg-green-300 transition">Devenir partenaire</a>
-      </div>
-    </section>
-
-    <section id="join" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-6">Tu cherches une colab ?</h3>
-        <p class="text-gray-700 mb-6">Si vous êtes indépendant ou porteur d’un projet créatif, technique ou visuel et souhaitez collaborer, nous serions ravis d’échanger !</p>
-        <form class="grid grid-cols-1 gap-4 max-w-xl mx-auto" enctype="multipart/form-data">
-          <input type="text" placeholder="Nom & Prénom" class="p-3 rounded bg-gray-100 text-black" required>
-          <input type="email" placeholder="Email" class="p-3 rounded bg-gray-100 text-black" required>
-          <select class="p-3 rounded bg-gray-100 text-black" required>
-            <option value="">Êtes-vous déjà indépendant ?</option>
-            <option>Oui</option>
-            <option>Non</option>
-            <option>En cours de création</option>
-          </select>
-          <textarea placeholder="Quel type de collaboration média recherchez-vous ?" rows="4" class="p-3 rounded bg-gray-100 text-black" required></textarea>
-          <select class="p-3 rounded bg-gray-100 text-black" required>
-            <option value="">Souhaitez-vous planifier un RDV ?</option>
-            <option>Oui, en ligne</option>
-            <option>Oui, en présentiel</option>
-            <option>Non, juste un échange par mail</option>
-          </select>
-          <label class="text-left text-gray-600 text-sm">Joindre une présentation, portfolio, ou visuels (PDF, JPG, PNG, max. 25 Mo)</label>
-          <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="p-3 rounded bg-gray-100 text-black" multiple>
-          <button type="submit" class="bg-green-400 text-black px-6 py-3 rounded font-semibold hover:bg-green-300 transition">Envoyer ma demande</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-white border-t border-gray-200 hidden" data-aos="fade-up">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-6">Contact</h3>
-        <p class="text-gray-700 mb-6">Parlez-nous de votre projet ou posez-nous vos questions à l’aide du formulaire.</p>
-        <form class="grid grid-cols-1 gap-4 max-w-xl mx-auto">
-          <input type="text" placeholder="Nom" class="p-3 rounded bg-gray-100 text-black" required>
-          <input type="email" placeholder="Email" class="p-3 rounded bg-gray-100 text-black" required>
-          <textarea placeholder="Votre message..." rows="4" class="p-3 rounded bg-gray-100 text-black" required></textarea>
-          <button type="submit" class="bg-green-400 text-black px-6 py-3 rounded font-semibold hover:bg-green-300 transition">Envoyer</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-6 text-center text-gray-600 border-t border-gray-200">
-      <p class="text-sm">© 2025 sqwensi. Tous droits réservés.</p>
-    </footer>
-
-    <!-- Init AOS & Mobile menu toggle -->
-    <script>
-      AOS.init({
-        duration: 1000,
-        once: true
-      });
-      const btn = document.getElementById('menu-btn');
-      const menu = document.getElementById('mobile-menu-links');
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('open');
+      link.addEventListener('mouseover', () => {
+        span.textContent = emojiMap[original] || original;
       });
 
-      const emojiMap = {
-        'Studio': '📸',
-        'Brand Market': '💼',
-        'Partenariat': '🤝',
-        'Contact': '✉️'
-      };
-
-      document.querySelectorAll('.menu-link').forEach(link => {
-        const span = link.querySelector('.link-text');
-        const original = span.textContent;
-
-        link.addEventListener('mouseover', () => {
-          span.textContent = emojiMap[original] || original;
-        });
-
-        link.addEventListener('mouseout', () => {
-          span.textContent = original;
-        });
+      link.addEventListener('mouseout', () => {
+        span.textContent = original;
       });
 
-      const toggle = document.getElementById('theme-toggle');
-      toggle.addEventListener('click', () => {
-        document.body.classList.add('transition-colors', 'duration-700');
-        document.body.classList.toggle('dark');
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+        frame.classList.remove('loaded');
+        frame.innerHTML = '<div class="loader">Chargement...</div>';
+        try {
+          const res = await fetch(url);
+          const html = await res.text();
+          setTimeout(() => {
+            frame.innerHTML = html;
+            frame.classList.add('loaded');
+            frame.style.minHeight = 'calc(100vh - 6rem)';
+          }, 300);
+
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          document.body.appendChild(temp);
+          const height = temp.offsetHeight;
+          document.body.removeChild(temp);
+
+          frame.style.height = height + 'px';
+          window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
+        } catch {
+          frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
+          frame.style.height = 'auto';
+        }
       });
-      
-      
-    </script>
-  </body>
+    });
+
+    const logo = document.getElementById('logo-frame');
+    if (logo) {
+      logo.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = logo.getAttribute('data-src');
+        frame.classList.remove('loaded');
+        frame.innerHTML = '<div class="loader">Chargement...</div>';
+        try {
+          const res = await fetch(url);
+          const html = await res.text();
+          setTimeout(() => {
+            frame.innerHTML = html;
+            frame.classList.add('loaded');
+            frame.style.minHeight = 'calc(100vh - 6rem)';
+          }, 300);
+
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          document.body.appendChild(temp);
+          const height = temp.offsetHeight;
+          document.body.removeChild(temp);
+
+          frame.style.height = height + 'px';
+          window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
+        } catch {
+          frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
+          frame.style.height = 'auto';
+        }
+      });
+    }
+
+    const mobileToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
 </html>
