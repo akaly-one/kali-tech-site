@@ -39,14 +39,25 @@
           display: block;
         }
       }
+      @keyframes color-wave {
+        0%   { color: #22c55e; }
+        25%  { color: #3b82f6; }
+        50%  { color: #a855f7; }
+        75%  { color: #f59e0b; }
+        100% { color: #22c55e; }
+      }
+
+      .hover\:animate-color-wave:hover {
+        animation: color-wave 1.5s linear infinite;
+      }
     </style>
   </head>
   <body class="bg-white text-black">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black/80 z-50 border-b border-gray-800">
+    <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
       <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold tracking-wide">sqwensi</h1>
+        <h1 class="text-xl font-bold tracking-wide animate-logo hover:animate-color-wave cursor-pointer">sqwensi</h1>
         <!-- Desktop menu -->
         <ul class="desktop-menu flex space-x-6 text-sm font-medium">
           <li><a href="#home" class="hover:text-green-400 uppercase">Accueil</a></li>
@@ -75,10 +86,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80');">
+    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('assets/img/bg-gold-white.jpg');">
       <div data-aos="fade-up">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-4">L'agence créative & tech</h2>
-        <p class="text-xl text-gray-300 max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
+        <h2 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">L'agence créative & tech</h2>
+        <p class="text-xl text-white drop-shadow-md max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
       </div>
     </section>
 
