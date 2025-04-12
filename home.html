@@ -278,6 +278,33 @@
       </div>
     </section>
 
+    <section id="join" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-6">Tu cherches une colab ?</h3>
+        <p class="text-gray-700 mb-6">Si vous êtes indépendant ou porteur d’un projet créatif, technique ou visuel et souhaitez collaborer, nous serions ravis d’échanger !</p>
+        <form class="grid grid-cols-1 gap-4 max-w-xl mx-auto" enctype="multipart/form-data">
+          <input type="text" placeholder="Nom & Prénom" class="p-3 rounded bg-gray-100 text-black" required>
+          <input type="email" placeholder="Email" class="p-3 rounded bg-gray-100 text-black" required>
+          <select class="p-3 rounded bg-gray-100 text-black" required>
+            <option value="">Êtes-vous déjà indépendant ?</option>
+            <option>Oui</option>
+            <option>Non</option>
+            <option>En cours de création</option>
+          </select>
+          <textarea placeholder="Quel type de collaboration média recherchez-vous ?" rows="4" class="p-3 rounded bg-gray-100 text-black" required></textarea>
+          <select class="p-3 rounded bg-gray-100 text-black" required>
+            <option value="">Souhaitez-vous planifier un RDV ?</option>
+            <option>Oui, en ligne</option>
+            <option>Oui, en présentiel</option>
+            <option>Non, juste un échange par mail</option>
+          </select>
+          <label class="text-left text-gray-600 text-sm">Joindre une présentation, portfolio, ou visuels (PDF, JPG, PNG, max. 25 Mo)</label>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" class="p-3 rounded bg-gray-100 text-black" multiple>
+          <button type="submit" class="bg-green-400 text-black px-6 py-3 rounded font-semibold hover:bg-green-300 transition">Envoyer ma demande</button>
+        </form>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="py-20 bg-white border-t border-gray-200" data-aos="fade-up">
       <div class="max-w-4xl mx-auto px-4 text-center">
@@ -318,12 +345,14 @@
 
       document.querySelectorAll('.menu-link').forEach(link => {
         const span = link.querySelector('.link-text');
-        const original = span.innerText;
-        link.addEventListener('mouseenter', () => {
-          span.innerText = emojiMap[original] || original;
+        const original = span.textContent;
+
+        link.addEventListener('mouseover', () => {
+          span.textContent = emojiMap[original] || original;
         });
-        link.addEventListener('mouseleave', () => {
-          span.innerText = original;
+
+        link.addEventListener('mouseout', () => {
+          span.textContent = original;
         });
       });
 
