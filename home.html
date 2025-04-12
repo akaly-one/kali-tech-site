@@ -106,6 +106,20 @@
       body.dark a:hover {
         color: #22c55e;
       }
+
+      body.dark .text-gray-800,
+      body.dark .text-gray-700 {
+        color: #e5e7eb; /* Texte clair lisible */
+      }
+
+      body.dark .bg-gray-100 {
+        background-color: #334155; /* Fond légèrement plus sombre */
+      }
+    </style>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
     </style>
   </head>
   <body class="bg-white text-black">
@@ -155,7 +169,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('assets/img/bg-gold-white.jpg');">
+    <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('./assets/img/bg-gold-white.jpg');">
       <div data-aos="fade-up" class="transition-transform duration-500 hover:scale-105 text-white drop-shadow-lg">
         <h2 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-md">L'agence créative & tech</h2>
         <p class="text-xl text-white drop-shadow-md max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
@@ -288,6 +302,7 @@
 
       const toggle = document.getElementById('theme-toggle');
       toggle.addEventListener('click', () => {
+        document.body.classList.add('transition-colors', 'duration-700');
         document.body.classList.toggle('dark');
       });
     </script>
