@@ -44,5 +44,10 @@ section {
 nav.bg-black .menu-link .link-text {
   color: #ffffff !important;
 }
+
+/* Pour que le scroll s'arrête juste sous la barre de navigation */
+#about {
+  scroll-margin-top: 6rem;
+}
 </style>
 </file>
