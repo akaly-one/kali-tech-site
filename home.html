@@ -19,6 +19,17 @@
       body {
         font-family: 'Inter', sans-serif;
       }
+      .mobile-menu {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .desktop-menu {
+          display: none;
+        }
+        .mobile-menu {
+          display: block;
+        }
+      }
     </style>
   </head>
   <body class="bg-black text-white">
@@ -27,7 +38,23 @@
     <nav class="fixed top-0 w-full bg-black z-50 border-b border-gray-800">
       <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 class="text-xl font-bold tracking-wide">sqwensi</h1>
-        <ul class="flex space-x-6 text-sm font-medium">
+        <!-- Desktop menu -->
+        <ul class="desktop-menu flex space-x-6 text-sm font-medium">
+          <li><a href="#home" class="hover:text-green-400">Accueil</a></li>
+          <li><a href="#about" class="hover:text-green-400">À propos</a></li>
+          <li><a href="#services" class="hover:text-green-400">Services</a></li>
+          <li><a href="#portfolio" class="hover:text-green-400">Réalisations</a></li>
+          <li><a href="#partners" class="hover:text-green-400">Partenariat</a></li>
+          <li><a href="#contact" class="hover:text-green-400">Contact</a></li>
+        </ul>
+        <!-- Mobile menu button -->
+        <div class="mobile-menu">
+          <button id="menu-btn" class="text-white focus:outline-none text-3xl">☰</button>
+        </div>
+      </div>
+      <!-- Mobile menu links -->
+      <div id="mobile-menu-links" class="hidden bg-black text-white px-4 pb-4">
+        <ul class="flex flex-col space-y-2 text-sm font-medium">
           <li><a href="#home" class="hover:text-green-400">Accueil</a></li>
           <li><a href="#about" class="hover:text-green-400">À propos</a></li>
           <li><a href="#services" class="hover:text-green-400">Services</a></li>
@@ -80,9 +107,9 @@
       <div class="max-w-6xl mx-auto px-4 text-center">
         <h3 class="text-3xl font-bold mb-12">Réalisations</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <img src="https://source.unsplash.com/random/800x600?technology" class="rounded-xl shadow-md" alt="Projet 1">
-          <img src="https://source.unsplash.com/random/800x600?design" class="rounded-xl shadow-md" alt="Projet 2">
-          <img src="https://source.unsplash.com/random/800x600?branding" class="rounded-xl shadow-md" alt="Projet 3">
+          <img src="https://source.unsplash.com/800x600/?technology,project" class="rounded-xl shadow-md" alt="Projet 1">
+          <img src="https://source.unsplash.com/800x600/?design,workspace" class="rounded-xl shadow-md" alt="Projet 2">
+          <img src="https://source.unsplash.com/800x600/?branding,creative" class="rounded-xl shadow-md" alt="Projet 3">
         </div>
       </div>
     </section>
@@ -115,11 +142,16 @@
       <p class="text-sm">© 2025 sqwensi. Tous droits réservés.</p>
     </footer>
 
-    <!-- Init AOS -->
+    <!-- Init AOS & Mobile menu toggle -->
     <script>
       AOS.init({
         duration: 1000,
         once: true
+      });
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu-links');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
       });
     </script>
   </body>
