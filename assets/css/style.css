@@ -5,6 +5,60 @@
 </section>
 
 <style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  padding: 0.5rem 0; /* Réduit l'épaisseur du header pour mieux s'adapter à la taille du logo */
+}
+
+#content-frame {
+  position: relative;
+  top: 0; /* Retirer l'espace entre le header et la frame */
+  width: 100vw;
+  height: calc(100vh - 4rem); /* Utiliser la hauteur restante après le header */
+  padding: 0;
+  margin-top: 0; /* Supprimer la marge supérieure */
+  overflow: hidden;
+}
+
+#mobile-menu {
+  background-color: rgba(0, 0, 0, 0.95);
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  z-index: 40;
+}
+
+#menu-toggle {
+  color: white;
+}
+
+#logo-frame {
+  position: relative;
+  z-index: 999;
+  pointer-events: auto;
+  font-size: 3rem; /* Taille plus grande pour le logo */
+}
+
+@media (max-width: 768px) {
+  #logo-frame {
+    font-size: 2rem; /* Ajuster pour mobile */
+  }
+
+  #content-frame {
+    height: calc(100vh - 6rem); /* Ajuste la hauteur de la frame sur mobile */
+  }
+
+  .menu-link {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
 .text-on-image {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }

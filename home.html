@@ -43,20 +43,30 @@ body {
   color: #111;
 }
 
-#content-frame {
-  position: absolute;
-  top: 4rem;
+header {
+  position: fixed;
+  top: 0;
   left: 0;
+  width: 100%;
+  z-index: 50;
+  padding: 0.5rem 0;  /* Ajustement pour mieux s’adapter à la taille du logo */
+}
+
+#content-frame {
+  position: relative;
+  top: 0;
   width: 100vw;
-  height: calc(100vh - 4rem);
-  overflow: hidden;
+  height: 100vh; /* Utilise 100% de la hauteur de la fenêtre */
   padding: 0;
-  pointer-events: none;
+  margin-top: 0;
+  overflow: hidden;
 }
 
 #logo-frame {
   position: relative;
-  z-index: 60;
+  z-index: 999;
+  pointer-events: auto;
+  font-size: 2.5rem; /* Ajuste la taille du logo */
 }
 
 .loader {
@@ -108,9 +118,9 @@ body {
 <body class="bg-white text-black">
 
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
+  <header class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div id="logo-frame" data-src="Frames/hfr.html" class="text-2xl md:text-3xl font-extrabold tracking-wide logo-animated cursor-pointer select-none">sqwensi</div>
+      <div id="logo-frame" data-src="Frames/hfr.html" class="text-4xl md:text-5xl font-extrabold tracking-wide logo-animated cursor-pointer select-none z-[999] relative">sqwensi</div>
       <ul class="desktop-menu flex space-x-6 text-sm font-medium">
         <li><a href="Frames/studio.html" class="menu-link uppercase relative group"><span class="link-text">Studio</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
         <li><a href="Frames/brand.html" class="menu-link uppercase relative group"><span class="link-text">Brand</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
@@ -125,7 +135,7 @@ body {
       <li><a href="Frames/partners.html" class="menu-link uppercase">Partenariat</a></li>
       <li><a href="Frames/contact.html" class="menu-link uppercase">Contact</a></li>
     </ul>
-  </nav>
+  </header>
 
   <!-- Contenu dynamique -->
   <main class="pt-0">
@@ -157,7 +167,7 @@ body {
       }
     });
 
-    const menuLinks = document.querySelectorAll('nav a[href$=".html"]');
+    const menuLinks = document.querySelectorAll('header a[href$=".html"]');
 
     const emojiMap = {
       'Studio': '📸',
@@ -211,27 +221,24 @@ body {
         const url = logo.getAttribute('data-src');
         if (!url) return;
 
-        frame.classList.remove('loaded');
-        frame.innerHTML = '<div class="loader">Chargement...</div>';
+        // Animation de disparition
+        frame.style.transition = 'opacity 0.8s ease';
+        frame.style.opacity = 0;
 
-        try {
-          const res = await fetch(url, { cache: 'no-store' });
-          const html = await res.text();
-
-          setTimeout(() => {
+        setTimeout(async () => {
+          frame.innerHTML = '<div class="loader">Chargement...</div>';
+          try {
+            const res = await fetch(url, { cache: 'no-store' });
+            const html = await res.text();
             frame.innerHTML = html;
             frame.classList.add('loaded');
+            frame.style.opacity = 1;
             window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
-          }, 300);
-
-          const temp = document.createElement('div');
-          temp.innerHTML = html;
-          document.body.appendChild(temp);
-          document.body.removeChild(temp);
-
-        } catch {
-          frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
-        }
+          } catch {
+            frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
+            frame.style.opacity = 1;
+          }
+        }, 800);
       });
     }
 
@@ -248,5 +255,6 @@ body {
       });
     });
   </script>
+  <script src="assets/js/scripts.js"></script>
 </body>
 </html>
