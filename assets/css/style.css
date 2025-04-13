@@ -42,6 +42,7 @@ header {
   z-index: 999;
   pointer-events: auto;
   font-size: 3rem; /* Taille plus grande pour le logo */
+  cursor: pointer; /* Ajout du curseur pointer pour indiquer que c'est cliquable */
 }
 
 @media (max-width: 768px) {
@@ -68,6 +69,7 @@ header {
   min-width: 120px;
   text-align: center;
   transition: all 0.3s ease;
+  cursor: pointer; /* Ajout du curseur pointer pour les liens de menu */
 }
 
 section {
@@ -116,4 +118,33 @@ nav.bg-black .menu-link .link-text {
   animation: colorWave 3s infinite ease-in-out;
 }
 </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const logo = document.getElementById('logo-frame');
+    const contentFrame = document.getElementById('content-frame');
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault(); // Empêche le comportement par défaut
+        const url = this.getAttribute('href'); // Récupère l'URL du lien
+        fetch(url)
+          .then(response => response.text())
+          .then(data => {
+            contentFrame.innerHTML = data; // Met à jour le contenu de la frame
+          })
+          .catch(error => console.error('Erreur de chargement:', error));
+      });
+    });
+
+    logo.addEventListener('click', function () {
+      fetch('Frames/hfr.html')
+        .then(response => response.text())
+        .then(data => {
+          contentFrame.innerHTML = data; // Recharge le contenu
+        })
+        .catch(error => console.error('Erreur de chargement:', error));
+    });
+  });
+</script>
 </file>

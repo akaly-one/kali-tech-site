@@ -8,112 +8,112 @@
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-@keyframes colorWave {
-  0% { color: #22c55e; }
-  25% { color: #3b82f6; }
-  50% { color: #a855f7; }
-  75% { color: #f59e0b; }
-  100% { color: #22c55e; }
-}
+    @keyframes colorWave {
+      0% { color: #22c55e; }
+      25% { color: #3b82f6; }
+      50% { color: #a855f7; }
+      75% { color: #f59e0b; }
+      100% { color: #22c55e; }
+    }
 
-.animate-color-wave {
-  animation: colorWave 3s infinite;
-}
+    .animate-color-wave {
+      animation: colorWave 3s infinite;
+    }
 
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 10px #22c55e; }
-  25% { text-shadow: 0 0 10px #3b82f6; }
-  50% { text-shadow: 0 0 10px #a855f7; }
-  75% { text-shadow: 0 0 10px #f59e0b; }
-}
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #22c55e; }
+      25% { text-shadow: 0 0 10px #3b82f6; }
+      50% { text-shadow: 0 0 10px #a855f7; }
+      75% { text-shadow: 0 0 10px #f59e0b; }
+    }
 
-.animate-color-aura {
-  animation: glow 4s ease-in-out infinite;
-}
+    .animate-color-aura {
+      animation: glow 4s ease-in-out infinite;
+    }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #fff;
-  color: #111;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #111;
+    }
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  padding: 0.5rem 0;  /* Ajustement pour mieux s’adapter à la taille du logo */
-}
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      padding: 0.5rem 0;
+    }
 
-#content-frame {
-  position: relative;
-  top: 0;
-  width: 100vw;
-  height: 100vh; /* Utilise 100% de la hauteur de la fenêtre */
-  padding: 0;
-  margin-top: 0;
-  overflow: hidden;
-}
+    #content-frame {
+      position: relative;
+      top: 4rem; /* La frame commence juste sous le header */
+      width: 100vw;
+      height: calc(100vh - 4rem); /* Ajuster la hauteur de la frame en fonction de la hauteur du header */
+      padding: 0;
+      margin-top: 0;
+      overflow-y: auto; /* Permet à la frame de défiler si nécessaire */
+    }
 
-#logo-frame {
-  position: relative;
-  z-index: 999;
-  pointer-events: auto;
-  font-size: 2.5rem; /* Ajuste la taille du logo */
-}
+    #logo-frame {
+      position: relative;
+      z-index: 999;
+      pointer-events: auto;
+      font-size: 3rem; /* Ajuste la taille du logo */
+    }
 
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  color: #888;
-  font-size: 1rem;
-}
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      color: #888;
+      font-size: 1rem;
+    }
 
-.menu-link {
-  position: relative;
-  display: inline-block;
-  padding: 5px 10px;
-  z-index: 1;
-  transition: color 0.3s ease;
-}
+    .menu-link {
+      position: relative;
+      display: inline-block;
+      padding: 5px 10px;
+      z-index: 1;
+      transition: color 0.3s ease;
+    }
 
-.menu-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
-  transition: width 0.4s ease;
-}
+    .menu-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
+      transition: width 0.4s ease;
+    }
 
-.menu-link:hover::after {
-  width: 100%;
-}
+    .menu-link:hover::after {
+      width: 100%;
+    }
 
-.logo-animated:hover {
-  animation: colorWave 3s infinite;
-}
+    .logo-animated:hover {
+      animation: colorWave 3s infinite;
+    }
 
-#mobile-menu {
-  background-color: rgba(0, 0, 0, 0.95);
-  position: absolute;
-  top: 4rem;
-  left: 0;
-  width: 100%;
-  z-index: 40;
-}
-</style>
+    #mobile-menu {
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      z-index: 40;
+    }
+  </style>
 </head>
 <body class="bg-white text-black">
 
