@@ -7,254 +7,76 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function loadFrame() {
+      document.getElementById('content-frame').src = 'Frames/hfr.html';
+    }
+  </script>
   <style>
-    @keyframes colorWave {
-      0% { color: #22c55e; }
-      25% { color: #3b82f6; }
-      50% { color: #a855f7; }
-      75% { color: #f59e0b; }
-      100% { color: #22c55e; }
-    }
-
-    .animate-color-wave {
-      animation: colorWave 3s infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { text-shadow: 0 0 10px #22c55e; }
-      25% { text-shadow: 0 0 10px #3b82f6; }
-      50% { text-shadow: 0 0 10px #a855f7; }
-      75% { text-shadow: 0 0 10px #f59e0b; }
-    }
-
-    .animate-color-aura {
-      animation: glow 4s ease-in-out infinite;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #fff;
-      color: #111;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 50;
-      padding: 0.5rem 0;
-    }
-
-    #content-frame {
-      position: relative;
-      top: 4rem; /* La frame commence juste sous le header */
-      width: 100vw;
-      height: calc(100vh - 4rem); /* Ajuster la hauteur de la frame en fonction de la hauteur du header */
-      padding: 0;
-      margin-top: 0;
-      overflow-y: auto; /* Permet à la frame de défiler si nécessaire */
-    }
-
-    #logo-frame {
-      position: relative;
-      z-index: 999;
-      pointer-events: auto;
-      font-size: 3rem; /* Ajuste la taille du logo */
-    }
-
-    .loader {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 200px;
-      color: #888;
-      font-size: 1rem;
-    }
-
+    /* Modification du texte du menu de navigation */
     .menu-link {
-      position: relative;
-      display: inline-block;
-      padding: 5px 10px;
-      z-index: 1;
-      transition: color 0.3s ease;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+      color: white; /* Couleur par défaut du texte du menu */
     }
 
-    .menu-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background: linear-gradient(90deg, #22c55e, #3b82f6, #a855f7, #f59e0b, #22c55e);
-      transition: width 0.4s ease;
-    }
-
-    .menu-link:hover::after {
-      width: 100%;
-    }
-
-    .logo-animated:hover {
-      animation: colorWave 3s infinite;
-    }
-
-    #mobile-menu {
-      background-color: rgba(0, 0, 0, 0.95);
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      width: 100%;
-      z-index: 40;
+    /* Couleur au survol */
+    .menu-link:hover {
+      color: black;
+      font-size: 20px; /* Agrandir légèrement le texte au survol */
+      transition: font-size 0.3s ease-in-out, color 0.3s ease-in-out;
     }
   </style>
 </head>
-<body class="bg-white text-black">
+<body class="bg-white text-black" onload="loadFrame();">
 
   <!-- Navigation -->
-  <header class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800">
+  <header class="fixed top-0 w-full bg-[#6F2C3E] text-white z-50 border-b border-gray-800">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div id="logo-frame" data-src="Frames/hfr.html" class="text-4xl md:text-5xl font-extrabold tracking-wide logo-animated cursor-pointer select-none z-[999] relative">sqwensi</div>
-      <ul class="desktop-menu flex space-x-6 text-sm font-medium">
-        <li><a href="Frames/studio.html" class="menu-link uppercase relative group"><span class="link-text">Studio</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
-        <li><a href="Frames/brand.html" class="menu-link uppercase relative group"><span class="link-text">Brand</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
-        <li><a href="Frames/partners.html" class="menu-link uppercase relative group"><span class="link-text">Partenariat</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
-        <li><a href="Frames/contact.html" class="menu-link uppercase relative group"><span class="link-text">Contact</span><span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span></a></li>
+      <!-- Logo -->
+      <div id="logo-frame" data-src="Frames/hfr.html"
+           class="text-4xl md:text-5xl font-extrabold tracking-wide logo-animated cursor-pointer select-none z-[999] relative text-white glow">
+        sqwensi
+      </div>
+      <!-- Menu desktop -->
+      <ul class="desktop-menu hidden md:flex space-x-6 text-sm font-medium">
+        <li><a href="Frames/studio.html" class="menu-link uppercase relative group" onclick="document.getElementById('content-frame').src = this.href; return false;">
+          Studio
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a></li>
+        <li><a href="Frames/brand.html" class="menu-link uppercase relative group" onclick="document.getElementById('content-frame').src = this.href; return false;">
+          Brand
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a></li>
+        <li><a href="Frames/partners.html" class="menu-link uppercase relative group" onclick="document.getElementById('content-frame').src = this.href; return false;">
+          Partenariat
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a></li>
+        <li><a href="Frames/contact.html" class="menu-link uppercase relative group" onclick="document.getElementById('content-frame').src = this.href; return false;">
+          Contact
+          <span class="absolute bottom-0 left-0 w-full h-0.5 bg-green-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+        </a></li>
       </ul>
-      <button id="menu-toggle" class="md:hidden text-2xl">☰</button>
+
+      <!-- Menu mobile -->
+      <button id="menu-toggle" class="md:hidden text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden');">☰</button>
     </div>
+    <!-- Mobile Menu -->
     <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-4 mt-4 text-sm font-medium">
-      <li><a href="Frames/studio.html" class="menu-link uppercase">Studio</a></li>
-      <li><a href="Frames/brand.html" class="menu-link uppercase">Brand</a></li>
-      <li><a href="Frames/partners.html" class="menu-link uppercase">Partenariat</a></li>
-      <li><a href="Frames/contact.html" class="menu-link uppercase">Contact</a></li>
+      <li><a href="Frames/studio.html" class="menu-link uppercase text-base" onclick="document.getElementById('content-frame').src = this.href; return false;">Studio</a></li>
+      <li><a href="Frames/brand.html" class="menu-link uppercase text-base" onclick="document.getElementById('content-frame').src = this.href; return false;">Brand</a></li>
+      <li><a href="Frames/partners.html" class="menu-link uppercase text-base" onclick="document.getElementById('content-frame').src = this.href; return false;">Partenariat</a></li>
+      <li><a href="Frames/contact.html" class="menu-link uppercase text-base" onclick="document.getElementById('content-frame').src = this.href; return false;">Contact</a></li>
     </ul>
   </header>
 
-  <!-- Contenu dynamique -->
-  <main class="pt-0">
-    <div id="content-frame" class="transition-all duration-500 ease-in-out overflow-hidden"></div>
+  <!-- Cadre pour charger dynamiquement une frame -->
+  <main class="pt-16">
+    <div id="content-frame" class="transition-all duration-500 ease-in-out overflow-hidden max-w-full"></div>
   </main>
 
-  <script>
-    const frame = document.getElementById('content-frame');
-    
-    window.addEventListener('DOMContentLoaded', async () => {
-      try {
-        frame.classList.remove('loaded');
-        frame.innerHTML = '<div class="loader">Chargement...</div>';
-        const res = await fetch('Frames/hfr.html');
-        const html = await res.text();
-        setTimeout(() => {
-          frame.innerHTML = html;
-          frame.classList.add('loaded');
-        }, 300);
-
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        document.body.appendChild(temp);
-        document.body.removeChild(temp);
-
-      } catch {
-        frame.innerHTML = '<p class="text-center text-red-500">Page d’accueil introuvable.</p>';
-        frame.style.height = 'auto';
-      }
-    });
-
-    const menuLinks = document.querySelectorAll('header a[href$=".html"]');
-
-    const emojiMap = {
-      'Studio': '📸',
-      'Brand': '💼',
-      'Partenariat': '🤝',
-      'Contact': '✉️'
-    };
-
-    menuLinks.forEach(link => {
-      const span = link.querySelector('.link-text');
-      const original = span.textContent;
-
-      link.addEventListener('mouseover', () => {
-        span.textContent = emojiMap[original] || original;
-      });
-
-      link.addEventListener('mouseout', () => {
-        span.textContent = original;
-      });
-
-      link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const url = link.getAttribute('href');
-        frame.classList.remove('loaded');
-        frame.innerHTML = '<div class="loader">Chargement...</div>';
-        try {
-          const res = await fetch(url);
-          const html = await res.text();
-          setTimeout(() => {
-            frame.innerHTML = html;
-            frame.classList.add('loaded');
-            window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
-          }, 300);
-
-          const temp = document.createElement('div');
-          temp.innerHTML = html;
-          document.body.appendChild(temp);
-          document.body.removeChild(temp);
-
-        } catch {
-          frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
-          frame.style.height = 'auto';
-        }
-      });
-    });
-
-    const logo = document.getElementById('logo-frame');
-    if (logo) {
-      logo.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const url = logo.getAttribute('data-src');
-        if (!url) return;
-
-        // Animation de disparition
-        frame.style.transition = 'opacity 0.8s ease';
-        frame.style.opacity = 0;
-
-        setTimeout(async () => {
-          frame.innerHTML = '<div class="loader">Chargement...</div>';
-          try {
-            const res = await fetch(url, { cache: 'no-store' });
-            const html = await res.text();
-            frame.innerHTML = html;
-            frame.classList.add('loaded');
-            frame.style.opacity = 1;
-            window.scrollTo({ top: frame.offsetTop - 80, behavior: 'smooth' });
-          } catch {
-            frame.innerHTML = '<p class="text-center text-red-500">Contenu introuvable.</p>';
-            frame.style.opacity = 1;
-          }
-        }, 800);
-      });
-    }
-
-    const mobileToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-  </script>
   <script src="assets/js/scripts.js"></script>
 </body>
 </html>

@@ -1,150 +1,175 @@
-<nav class="fixed top-0 w-full bg-black/80 text-white z-50 border-b border-gray-800 nav-dark">
-<section id="home" style="background-image: url('https://blog.cgify.com/wp-content/uploads/2020/01/meaning-of-design.jpg');">
-  <h2 class="text-5xl md:text-7xl font-extrabold mb-4 text-on-image">L'agence créative & tech</h2>
-  <p class="text-xl text-on-image max-w-xl mx-auto">Design. Branding. Import-export. Développement web.</p>
-</section>
+/* ==========================================
+   🌐 STYLE GLOBAL - PAGES INTERNES SQWENSI
+   ========================================== */
 
-<style>
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  padding: 0.5rem 0; /* Réduit l'épaisseur du header pour mieux s'adapter à la taille du logo */
-}
-
-#content-frame {
-  position: relative;
-  top: 0; /* Retirer l'espace entre le header et la frame */
-  width: 100vw;
-  height: calc(100vh - 4rem); /* Utiliser la hauteur restante après le header */
-  padding: 0;
-  margin-top: 0; /* Supprimer la marge supérieure */
-  overflow: hidden;
-}
-
-#mobile-menu {
-  background-color: rgba(0, 0, 0, 0.95);
-  position: absolute;
-  top: 4rem;
-  left: 0;
-  width: 100%;
-  z-index: 40;
-}
-
-#menu-toggle {
-  color: white;
-}
-
-#logo-frame {
-  position: relative;
-  z-index: 999;
-  pointer-events: auto;
-  font-size: 3rem; /* Taille plus grande pour le logo */
-  cursor: pointer; /* Ajout du curseur pointer pour indiquer que c'est cliquable */
-}
-
-@media (max-width: 768px) {
-  #logo-frame {
-    font-size: 2rem; /* Ajuster pour mobile */
+   body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #111111;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garder le header visible */
+    background-color: #B83227; /* Couleur du header */
+    padding: 15px 10px;
   }
 
-  #content-frame {
-    height: calc(100vh - 6rem); /* Ajuste la hauteur de la frame sur mobile */
+  a {
+    color: #16a34a; /* vert tailwind */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #22c55e;
+  }
+  
+  /* ==========================================
+     🌐 STYLE GLOBAL POUR LES CONTENT FRAMES
+     ========================================== */
+
+  /* Définir l'espacement entre le haut de la page et les éléments de contenu */
+  .content-frame {
+    margin-top: 80px; /* Ajuster en fonction de la hauteur du header */
+    padding: 20px;
+    width: 100%;
   }
 
-  .menu-link {
-    padding: 10px 15px;
-    font-size: 14px;
+  /* Appliquer un décalage pour tous les éléments importants */
+  h1, h2, h3, h4, p, form, .slide-show {
+    margin-top: 20px; /* Décaler tous ces éléments de 20px vers le bas */
   }
-}
 
-.text-on-image {
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-}
+  /* Slide Show */
+  .slide-show {
+    margin-top: 20px;
+    padding: 10px;
+  }
 
-.menu-link {
-  display: inline-block;
-  min-width: 120px;
-  text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer; /* Ajout du curseur pointer pour les liens de menu */
-}
+  /* Formulaires */
+  form {
+    margin-top: 20px;
+  }
 
-section {
-  scroll-margin-top: 6rem; /* équivaut à scroll-mt-24 */
-}
+  /* Titre */
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+    max-width: 70ch;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 
-.menu-link::after {
-  content: "";
-  display: block;
-  height: 2px;
-  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-  margin-top: 4px;
-  transition: transform 0.3s ease;
-  transform: scaleX(0);
-  transform-origin: left;
-}
+  /* Menu de navigation */
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
 
-.menu-link:hover::after {
-  transform: scaleX(1);
-}
+  nav ul li {
+    margin: 0 15px;
+  }
 
-/* Applique une couleur blanche au texte des boutons de menu */
-.menu-link .link-text {
-  color: #ffffff !important;
-}
+  nav ul li a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s;
+  }
 
-/* Si le corps n'est pas en mode sombre, mais que le fond du menu est noir, forcer le texte en blanc */
-nav.bg-black .menu-link .link-text {
-  color: #ffffff !important;
-}
-
-/* Pour que le scroll s'arrête juste sous la barre de navigation */
-#about {
-  scroll-margin-top: 6rem;
-}
-
-@keyframes colorWave {
-  0% { color: #22c55e; }
-  25% { color: #3b82f6; }
-  50% { color: #a855f7; }
-  75% { color: #f59e0b; }
-  100% { color: #22c55e; }
-}
-
-.logo-animated:hover {
-  animation: colorWave 3s infinite ease-in-out;
-}
-</style>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuLinks = document.querySelectorAll('.menu-link');
-    const logo = document.getElementById('logo-frame');
-    const contentFrame = document.getElementById('content-frame');
-
-    menuLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault(); // Empêche le comportement par défaut
-        const url = this.getAttribute('href'); // Récupère l'URL du lien
-        fetch(url)
-          .then(response => response.text())
-          .then(data => {
-            contentFrame.innerHTML = data; // Met à jour le contenu de la frame
-          })
-          .catch(error => console.error('Erreur de chargement:', error));
-      });
-    });
-
-    logo.addEventListener('click', function () {
-      fetch('Frames/hfr.html')
-        .then(response => response.text())
-        .then(data => {
-          contentFrame.innerHTML = data; // Recharge le contenu
-        })
-        .catch(error => console.error('Erreur de chargement:', error));
-    });
-  });
-</script>
-</file>
+  nav ul li a:hover {
+    background-color: #ecfccb;
+    color: #111111;
+  }
+  
+  /* ========================
+     🧱 Composants Utiles
+     ======================== */
+  
+  .btn {
+    background-color: #16a34a;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #15803d;
+  }
+  
+  .card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    .grid-2, .grid-3 {
+      grid-template-columns: 1fr;
+    }
+  
+    .container {
+      padding: 1rem;
+    }
+  }
+  
+  /* ========================
+     ✅ Animations simples
+     ======================== */
+  
+  .fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .highlight {
+    background-color: #ecfccb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }

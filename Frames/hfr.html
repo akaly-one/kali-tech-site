@@ -3,45 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <title>Accueil</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
-    .animate-entrance {
-      animation: fadeInUp 1s ease-out both;
+    /* Animation pulsation de couleur */
+    @keyframes pulse {
+      0% {
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: scale(1);
+      }
+      50% {
+        background-color: rgba(255, 255, 255, 0.8);
+        transform: scale(1.2);
+      }
+      100% {
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: scale(1);
+      }
     }
+
+    /* Appliquer l'animation de pulsation sur toute la page */
+    #home {
+      animation: pulse 3s infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    /* Ajouter l'animation de couleur sur le texte */
     .animate-color-aura {
-      animation: glow 4s ease-in-out infinite;
+      animation: pulse 3s infinite;
+      animation-timing-function: ease-in-out;
     }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+
+    /* Bordure en bas de la section "Qui sommes-nous" */
+    #about {
+      position: relative;
+      padding-bottom: 50px;
+      border-bottom: 4px solid #B83227; /* Bordure rouge bordeaux */
     }
-    @keyframes glow {
-      0%, 100% { text-shadow: 0 0 10px #22c55e; }
-      25% { text-shadow: 0 0 10px #3b82f6; }
-      50% { text-shadow: 0 0 10px #a855f7; }
-      75% { text-shadow: 0 0 10px #f59e0b; }
+
+    /* Style pour le texte qui déclenche l'apparition de la section */
+    #about h3 {
+      cursor: pointer;
+      position: relative;
+    }
+
+    /* Animation de défilement automatique au survol */
+    #about:hover {
+      transition: transform 0.5s ease-out;
+      transform: translateY(20px);
     }
   </style>
 </head>
 <body>
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="home" class="h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('../assets/img/bg-gold-white.jpg');">
-    <div class="relative z-10 text-center text-white animate-entrance cursor-pointer">
+    <div class="relative z-10 text-center text-black animate-entrance cursor-pointer">
       <h2 class="text-5xl md:text-7xl font-extrabold mb-4 animate-color-aura">L'agence créative & tech</h2>
       <p class="text-xl max-w-xl mx-auto animate-color-aura">Design. Branding. Import-export. Développement web.</p>
     </div>
   </section>
 
-  <!-- About -->
+  <!-- About Section -->
   <section id="about" class="py-20 bg-white border-t border-gray-200">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h3 class="text-3xl font-bold mb-4">À propos de sqwensi</h3>
-      <p class="text-gray-700 text-lg">
+      <h3 class="text-3xl font-bold mb-4 text-black" id="about-trigger">À propos de sqwensi</h3>
+      <p class="text-black text-lg">
         sqwensi est une agence créative belge qui connecte design, technologie et logistique pour propulser des marques ambitieuses dans l’univers digital et physique.
       </p>
     </div>

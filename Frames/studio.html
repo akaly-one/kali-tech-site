@@ -3,66 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>Studio</title>
-  <style>
-    @media (max-width: 768px) {
-      .tile {
-        height: 300px; /* Ajuster la hauteur des tuiles sur mobile */
-      }
-    }
-
-    .tile {
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .tile:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    }
-  </style>
+  <!-- Lien vers le fichier CSS global -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
 <section id="studio" class="py-0 bg-white border-t border-gray-200" data-aos="fade-up">
   <div class="max-w-full mx-auto px-0">
-    <h3 class="text-3xl font-bold text-center mb-12">Studio</h3>
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <p class="text-lg text-gray-700">
-        Notre <strong>studio créatif</strong> vous propose une gamme complète de services médias :
-      </p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full h-auto">
-
-      <!-- Tuile 1 -->
-      <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
-        <img src="https://picsum.photos/id/1011/600/400" class="w-full h-full object-cover" alt="Photographie d'une séance professionnelle">
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
-          <p class="text-white text-lg font-semibold">📸 Photographie</p>
+    <div class="max-w-3xl mx-auto text-center mb-12 gallery-container">
+      <div class="gallery">
+        <!-- Tuile 1 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
+          <img src="https://picsum.photos/id/1011/600/400" class="w-full h-full object-cover" alt="Photographie d'une séance professionnelle">
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+            <p class="text-white text-lg font-semibold">📸 Photographie</p>
+          </div>
         </div>
+
+        <!-- Tuile 2 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
+          <img src="https://picsum.photos/id/1015/600/400" class="w-full h-full object-cover" alt="Vidéo d'un projet publicitaire">
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+            <p class="text-white text-lg font-semibold">🎬 Montage Vidéo</p>
+          </div>
+        </div>
+
+        <!-- Tuile 3 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
+          <img src="https://picsum.photos/id/1024/600/400" class="w-full h-full object-cover" alt="Conception de sites web moderne">
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+            <p class="text-white text-lg font-semibold">🌐 Web Design</p>
+          </div>
+        </div>
+
+        <!-- Tuile 4 -->
+        <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
+          <img src="https://picsum.photos/id/1035/600/400" class="w-full h-full object-cover" alt="Publicité créative pour les marques">
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+            <p class="text-white text-lg font-semibold">📣 Publicité</p>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Tuile 2 -->
-      <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
-        <img src="https://picsum.photos/id/1015/600/400" class="w-full h-full object-cover" alt="Vidéo d'un projet publicitaire">
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
-          <p class="text-white text-lg font-semibold">🎬 Montage Vidéo</p>
-        </div>
+      <div class="gallery-text">
+        <p class="text-lg text-gray-700">
+          Notre <strong>studio créatif</strong> vous propose une gamme complète de services médias :
+        </p>
       </div>
-
-      <!-- Tuile 3 -->
-      <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
-        <img src="https://picsum.photos/id/1024/600/400" class="w-full h-full object-cover" alt="Conception de sites web moderne">
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
-          <p class="text-white text-lg font-semibold">🌐 Web Design</p>
-        </div>
-      </div>
-
-      <!-- Tuile 4 -->
-      <div class="relative group overflow-hidden rounded-xl shadow-lg w-full sm:h-72 h-full tile">
-        <img src="https://picsum.photos/id/1035/600/400" class="w-full h-full object-cover" alt="Publicité créative pour les marques">
-        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
-          <p class="text-white text-lg font-semibold">📣 Publicité</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
